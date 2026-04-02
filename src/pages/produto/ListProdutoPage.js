@@ -16,35 +16,36 @@ class ListProdutoPage extends HTMLElement {
         `;
         this.querySelector('#logout-btn')
         .addEventListener('click', logout);
+
         // Buscando os produtos 
-        const produtos = JSON.parse(this.fetchProdutos())
+        const produtos = this.fetchProdutos() || [];
+        
         //Renderizando os produtos no HTML
         this.renderProdutos(produtos);
     }
 
-    async fetchProduto() {
-    return `{
+  fetchProdutos() {
+    return [
             {
                 "id": 1,
-                "dsc_produto":
-                "valor_unit":20.99,
+                "dsc_produto":"Macarronada",
+                "valor_unit": 20.99,
                 "status": 1
-            }
-        },
-         {
+            },
+            {
                 "id": 2,
-                "dsc_produto":
-                "valor_unit":20.99,
+                "dsc_produto":"Feijoada",
+                "valor_unit": 30.99,
                 "status": 1
-            }
-        },
+            },
+        
          {
                 "id": 3,
-                "dsc_produto":
-                "valor_unit":14.99,
+                "dsc_produto":"Strogonoff de Frango",
+                "valor_unit":"14.99",
                 "status": 3
-            }
-        }`
+            }]
+        
     }
 
     renderProdutos(produtos) {
@@ -57,7 +58,7 @@ class ListProdutoPage extends HTMLElement {
         }
         //fornatando valores em reais 
         const formatMoedas = (value) => {
-            return value.toLocalteString('pt-BR', {style: 'currency', currency: 'BRL'});
+            return value.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
         }
         const produtoItems = produtos.map(produto => `
             <ion-item>
@@ -69,7 +70,7 @@ class ListProdutoPage extends HTMLElement {
             </ion-icon>
             <span>${produto.dsc_produto}</span>
             </h2>
-            <p>${formatMoedas(produto.value_unit)}</p>
+            <p>${formatMoedas(produto.valor_unit)}</p>
             </ion-label>
 
             <ion-buttons slot="end">

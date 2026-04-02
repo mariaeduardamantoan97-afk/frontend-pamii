@@ -1,17 +1,17 @@
-import './EditProdutoPage.css'
+import './CadUsuarioPage.css'
 import { createHeader } from '../../shared/Header.js'
-import { logout } from '../../shared/util.js';
+import { logout } from '../../shared/util.js'; 
 
-const pageName = 'Editar Produto';
+const pageName = 'Usuário';
 
-class EditProdutoPage extends HTMLElement {
+class UsuarioPage extends HTMLElement {
     connectedCallback() {
         this.classList.add('ion-page');
         const cabecalho = createHeader(pageName);
         this.innerHTML = `
             ${cabecalho}
 
-                    <ion-content class= "ion-podding">
+              <ion-content class= "ion-podding">
                 <form id="form-produto">
                 <ion-list>
                     <ion-item>
@@ -40,9 +40,8 @@ class EditProdutoPage extends HTMLElement {
         this.querySelector('#logout-btn')
         .addEventListener('click', logout);
         this.querySelector('#bnt-cancelar').addEventListener('click', () => windows.history.back());
+   
     }
 }
 
-      
-
-customElements.define('edit-produto-page', EditProdutoPage);
+customElements.define('usuario-page', UsuarioPage);
